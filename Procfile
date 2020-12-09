@@ -1,1 +1,1 @@
-web: vendor/bin/harumimax-project-3 public/
+web: vendor/bin/heroku-php-apache2 public/

@@ -1,2 +1,2 @@
 ### Hexlet tests and linter status:
-![Actions Status](/workflows/hexlet-check/badge.svg)
+![Master workflow](https://github.com/Harumimax/php-project-lvl3/workflows/Master%20workflow/badge.svg)
