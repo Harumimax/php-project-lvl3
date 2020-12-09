@@ -1,13 +1,12 @@
 start:
-	php artisan serve --host 0.0.0.0
+	heroku local -f Procfile.dev
 
 setup:
 	composer install
-	cp -n .env.example .env|| true
+	cp -n .env.example .env
 	php artisan key:gen --ansi
-	touch database/database.sqlite
+	touch database/database.sqlite || true
 	php artisan migrate
-	php artisan db:seed
 	npm install
 
 watch:
@@ -32,10 +31,10 @@ update:
 	composer dump-autoload
 
 lint:
-	composer run-script phpcs -- --standard=PSR12 app
+	composer run-script phpcs -- --standard=PSR12 app routes
 
 phpfix:
-	composer run-script phpcbf -- --standard=PSR12 app
+	composer run-script phpcbf -- --standard=PSR12 app routes
 
 testphp:
 	composer run-script phpunit tests
