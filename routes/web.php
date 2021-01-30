@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('/domains', 'App\Http\Controllers\DomainController');
+
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
+});
+
+Route::get('/123', function () {
+    return view('123');
 });
