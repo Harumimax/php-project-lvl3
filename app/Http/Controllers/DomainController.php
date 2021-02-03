@@ -39,7 +39,6 @@ class DomainController extends Controller
     public function store(Request $request)
     {
         $chekingDomainName = $request->validate([
-            //'domain.name' => 'required|unique:domains|min:3',
             'domain.name' => 'required|url'
         ]); 
 
@@ -50,7 +49,6 @@ class DomainController extends Controller
 
         if ($domainExist) {
             $request->session()->flash('flash_message', 'Сайт уже есть в базе данных');
-            //flash('Сайт уже есть в базе данных');
             return redirect()->route('domains.show', $domainExist->id);
         }
 
@@ -61,8 +59,7 @@ class DomainController extends Controller
         ]);
 
 
-        $request->session()->flash('flash_message', 'Статья СОЗДАНА, беач!');
-        //flash('Статья СОЗДАНА, беач!')->success();
+        $request->session()->flash('flash_message', 'Сайт проверен, беач!');
         return redirect()->route('domains.show', $id);
     }
 
