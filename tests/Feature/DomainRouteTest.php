@@ -18,7 +18,7 @@ class DomainRouteTest extends TestCase
     {
         parent::setUp();
         $faker = Factory::create();
-        
+
         $this->domain = $faker->domainName();
         //print_r($this->domain."\n");
         $this->id = DB::table('domains')->insertGetId([
@@ -57,10 +57,10 @@ class DomainRouteTest extends TestCase
     }
 
     public function testRouteStore2()
-   {
+    {
         $faker = Factory::create();
         $domainName = $faker->domainName();
-        $response = $this->post(route('domains.store'), ['domain' => ['name' => "http://".$domainName]]);
+        $response = $this->post(route('domains.store'), ['domain' => ['name' => "http://" . $domainName]]);
         //print_r($domainName."\n");
         $response->assertSessionHasNoErrors();
         $this->assertDatabaseHas('domains', ['name' => $this->domain]);

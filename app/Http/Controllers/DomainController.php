@@ -40,7 +40,7 @@ class DomainController extends Controller
     {
         $chekingDomainName = $request->validate([
             'domain.name' => 'required|url'
-        ]); 
+        ]);
 
         $domainFromForm = $request->input('domain.name');
         $domain = strtolower(parse_url($domainFromForm, PHP_URL_HOST));

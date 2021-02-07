@@ -31,10 +31,10 @@ update:
 	composer dump-autoload
 
 lint:
-	composer run-script phpcs -- --standard=PSR12 app routes
+	composer run-script phpcs -- --standard=PSR12 app routes tests
 
 phpfix:
-	composer run-script phpcbf -- --standard=PSR12 app routes
+	composer run-script phpcbf -- --standard=PSR12 app routes tests
 
 testphp:
 	composer run-script phpunit tests
