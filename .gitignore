@@ -13,5 +13,5 @@ yarn-error.log
 public/mix-manifest.json
 .env.backup
 /page test
-
+.env
 
