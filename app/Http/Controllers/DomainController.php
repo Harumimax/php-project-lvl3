@@ -63,12 +63,6 @@ class DomainController extends Controller
         return redirect()->route('domains.show', $id);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Domain  $domain
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $domain = DB::table('domains')->find($id);
@@ -78,12 +72,6 @@ class DomainController extends Controller
         return view('domain.show', compact('domain'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Domain  $domain
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Domain $domain)
     {
         //
