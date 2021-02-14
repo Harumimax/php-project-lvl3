@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/domains', 'App\Http\Controllers\DomainController');
+Route::resource('domains', 'App\Http\Controllers\DomainController');
+
+Route::resource('domains.checks', 'App\Http\Controllers\DomainChecksController')->only('store');
 
 Route::get('/', function () {
     return view('welcome');

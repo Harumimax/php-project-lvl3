@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class DomainController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $domains = DB::table('domains')->paginate(10);
@@ -19,23 +14,6 @@ class DomainController extends Controller
         return view('domain.index', compact('domains'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //$domain = new Domain();
-        //return view('domain.create', compact('domain'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $chekingDomainName = $request->validate([
@@ -49,6 +27,7 @@ class DomainController extends Controller
 
         if ($domainExist) {
             $request->session()->flash('flash_message', 'Сайт уже есть в базе данных');
+
             return redirect()->route('domains.show', $domainExist->id);
         }
 
@@ -57,6 +36,7 @@ class DomainController extends Controller
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
 
 
         $request->session()->flash('flash_message', 'Сайт проверен, беач!');
@@ -69,34 +49,8 @@ class DomainController extends Controller
 
         abort_unless($domain, 404);
 
-        return view('domain.show', compact('domain'));
-    }
+        $checks = DB::table('url_checks')->where('url_id', $id)->get();
 
-    public function edit(Domain $domain)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Domain  $domain
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Domain $domain)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Domain  $domain
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy()
-    {
-        //
+        return view('domain.show', compact('domain'), compact('checks'));
     }
 }

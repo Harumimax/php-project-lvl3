@@ -39,7 +39,46 @@
                         <td>{{ $domain->updated_at }}</td>
                     </tr>
             </tbody>
-        </table> 
+        </table>
+
+        <div>
+        <h1 class="display-4">Проверки</h1>
+        </div>
+
+        <br>
+            <div>
+            <form action="{{ route('domains.checks.store', $domain->id) }}" method="post">
+            @csrf
+            <button class="btn btn-outline-dark" type="submit">Проверить этот сайт сейчас</button>
+            </form>
+            </div>
+        <br><br>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Код ответа</th>
+                    <th>h1</th>
+                    <th>keywords</th>
+                    <th>description</th>
+                    <th>Дата создания</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($checks as $check)
+                    <tr>
+                        <th scope="row">{{ $check->id }}</th>
+                        <td>{{ $check->status_code }}</td>
+                        <td>{{ $check->h1 }}</td>
+                        <td>{{ $check->keywords }}</td>
+                        <td>{{ $check->description }}</td>
+                        <td>{{ $check->created_at }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
         <br>
     </div>
 
