@@ -26,6 +26,12 @@ class DomainRouteTest extends TestCase
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('url_checks')->insert([
+            'url_id' => $this->id,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     public function testMainPage()
